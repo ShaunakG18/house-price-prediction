@@ -1,63 +1,95 @@
-# 🏠 House Price Prediction using Machine Learning
+# 🏠 House Price Prediction (Advanced Regression + XGBoost)
 
-## 📌 Overview
+## 📌 Project Overview
 
-This project aims to predict house prices using machine learning techniques. The goal was to analyze housing data, identify key features influencing prices, and build a robust predictive model.
+This project focuses on predicting house prices using machine learning techniques on structured housing data.
+It explores multiple regression models, applies feature engineering, and performs model optimization to achieve high predictive accuracy.
 
 ---
 
-## ⚙️ Approach
+## 🎯 Objective
 
-### 🔹 Data Processing
+* Predict house sale prices based on property features
+* Identify key factors influencing house valuation
+* Improve model performance using tuning and feature engineering
 
-* Loaded dataset using Pandas
-* Handled missing values
-* Converted categorical data where required
+---
 
-### 🔹 Feature Engineering
+## ⚙️ Workflow
 
-* Created new features to improve model performance:
+### 🔹 1. Data Analysis
 
-  * `TotalSF` = Total square footage of house
-  * `LuxuryScore` = Overall quality × living area
+* Explored dataset structure (1460 houses, ~80 features)
+* Identified missing values and feature distributions
+* Analyzed correlations with target variable (`SalePrice`)
 
-### 🔹 Models Used
+---
+
+### 🔹 2. Data Preprocessing
+
+* Handled missing values using appropriate strategies
+* Selected relevant features
+* Converted categorical variables for modeling
+
+---
+
+### 🔹 3. Feature Engineering
+
+Created new features to improve model understanding:
+
+* `TotalSF` → total living area
+* `LuxuryScore` → OverallQual × GrLivArea
+
+These features helped capture patterns in high-value houses.
+
+---
+
+### 🔹 4. Models Implemented
 
 * Linear Regression
 * Random Forest Regressor
 * XGBoost Regressor
 
-### 🔹 Model Optimization
+---
+
+### 🔹 5. Model Optimization
 
 * Hyperparameter tuning (depth, estimators, learning rate)
-* Regularization to reduce overfitting
-* Subsampling for better generalization
+* Regularization (`reg_alpha`, `reg_lambda`)
+* Subsampling to prevent overfitting
 
 ---
 
 ## 📊 Results
 
-| Model             | R² Score       | MAE      |
-| ----------------- | -------------- | -------- |
-| Linear Regression | ~0.38          | High     |
-| Random Forest     | ~0.88          | ~17k     |
-| XGBoost           | **~0.91–0.92** | **~15k** |
+| Model                 | R² Score       | MAE      |
+| --------------------- | -------------- | -------- |
+| Linear Regression     | ~0.38          | Poor     |
+| Random Forest         | ~0.88          | ~17k     |
+| XGBoost (Final Model) | **~0.91–0.92** | **~15k** |
 
 ---
 
 ## 🔍 Key Insights
 
 * `OverallQual` and `GrLivArea` are the most influential features
-* Tree-based models significantly outperform linear models
-* Feature interactions improve prediction accuracy
-* The model underpredicts extremely high-priced houses (>600k)
+* Tree-based models outperform linear models due to non-linear relationships
+* Feature interactions significantly improve performance
+* The model performs best in mid-range price segments
 
 ---
 
 ## ⚠️ Limitations
 
-The dataset contains very few high-value houses (>600k), which limits the model’s ability to learn patterns in this range.
-As a result, predictions for extreme values tend to regress toward the mean.
+* Only **4 houses above 600k** exist in the dataset
+* This leads to:
+
+  * underprediction of extreme values
+  * regression toward the mean
+
+👉 This highlights a key ML concept:
+
+> Model performance is limited by data distribution
 
 ---
 
@@ -73,21 +105,10 @@ As a result, predictions for extreme values tend to regress toward the mean.
 
 ## 🚀 How to Run
 
-1. Clone the repository:
-
 ```bash
 git clone https://github.com/ShaunakG18/house-price-prediction.git
-```
-
-2. Install dependencies:
-
-```bash
+cd house-price-prediction
 pip install -r requirements.txt
-```
-
-3. Run the notebook:
-
-```bash
 jupyter notebook
 ```
 
@@ -95,20 +116,30 @@ jupyter notebook
 
 ## 📈 Future Improvements
 
-* Collect more high-value house data
-* Try advanced ensemble techniques
+* Collect more high-value housing data
+* Use ensemble/stacking methods
 * Deploy model using FastAPI
-* Build interactive frontend dashboard
+* Build a frontend dashboard
 
 ---
 
-## 👤 Author
+## 👨‍💻 Author
 
 Shaunak G
-Computer Science & Engineering Student
+BTech CSE Student
 
 ---
 
-## ⭐ Acknowledgment
+## ⭐ Key Learning
 
-Dataset inspired by the Ames Housing dataset (commonly used in Kaggle competitions).
+This project demonstrates that:
+
+* Model tuning improves performance
+* Feature engineering is critical
+* **Data imbalance strongly affects predictions**
+
+---
+
+## 📎 Dataset
+
+Ames Housing Dataset (Kaggle - Advanced Regression Techniques)
